@@ -9,26 +9,29 @@ const logger = (req, res, next) => {
     next();
 }
 
-const privateMiddleware = (req, res, next) => {
-    const url = req.url;
-    if (url === "/protected") {
-        return res.send("<h1>Not Allowed</h1>")
-    }
-    console.log("Allowed");
-    next();
-}
+app.use(logger);
 
-const handleHome = (req, res) => {
-    return res.send("<h1>I still love you!!</h1>");
-};
+const globalRouter = express.Router();
 
-const handleProtected = (req, res) => {
-    return res.send("<h1>U A Special!</h1>")
-}
+const handleHome = (req, res) => res.send("home");
 
-app.use(logger, privateMiddleware);
-app.get("/", handleHome);
-app.get("/protected", handleProtected);
+globalRouter.get("/", handleHome);
+
+const userRouter = express.Router();
+
+const handleEditUser = (req, res) => res.send("Edit User");
+
+userRouter.get("/edit", handleEditUser);
+
+const videoRouter = express.Router();
+
+const handleWatchVideo = (req, res) => res.send("Videos");
+
+videoRouter.get("/watch", handleWatchVideo);
+
+app.use("/", globalRouter);
+app.use("/users", userRouter);
+app.use("/videos", videoRouter);
 
 const handleListening = () =>
     console.log(`Server listening on port http://localhost:${PORT} 🥰`);
