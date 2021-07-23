@@ -1,5 +1,5 @@
 import express from "express";
-import globalRouter from "./routers/globalRouters";
+import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 
