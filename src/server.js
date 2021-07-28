@@ -8,7 +8,6 @@ const PORT = 4000;
 const app = express();
 
 const logger = (req, res, next) => {
-    console.log(`PATH: ${req.path} METHOD: ${req.method} URL: ${req.url}`);
     next();
 }
 
