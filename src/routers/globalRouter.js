@@ -4,14 +4,14 @@ import {
     login
 } from "../controllers/userController";
 import {
-    trending,
+    home,
     search
 } from "../controllers/videoController";
 
 
 const globalRouter = express.Router();
 
-globalRouter.get("/", trending);
+globalRouter.get("/", home);
 globalRouter.get("/join", join);
 globalRouter.get("/login", login);
 
